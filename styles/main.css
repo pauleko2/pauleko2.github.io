@@ -412,12 +412,16 @@ ul {
   border-radius: 20px;
 }
 
-.toDoContainer .todo-items .checkbox {
-  margin-right: 10px;
+.toDoContainer .todo-items .fa-check {
+  padding: 2px;
+  font-size: 28px;
+  line-height: 28px;
+  margin-right: 15px;
+  outline: none;
+  cursor: pointer;
 }
 
 .toDoContainer .todo-items .fa-trash {
-  float: right;
   padding: 2px;
   font-size: 28px;
   line-height: 28px;
@@ -429,7 +433,44 @@ ul {
   color: #fff;
 }
 
+.toDoContainer .todo-items .counter {
+  padding: 2px;
+  font-size: 20px;
+  line-height: 28px;
+  margin-right: 50px;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: auto;
+  color: #fff;
+}
+
+.toDoContainer .todo-items .icon-plus-sign {
+  padding: 2px;
+  font-size: 20px;
+  line-height: 28px;
+  margin-right: 25px;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+}
+
+.toDoContainer .todo-items .icon-minus-sign {
+  padding: 2px;
+  font-size: 20px;
+  line-height: 28px;
+  margin-right: 15px;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+}
+
 .toDoContainer .leftTodo-items {
+  position: relative;
   min-width: 350px;
 }
 
@@ -443,14 +484,54 @@ ul {
   border-radius: 20px;
 }
 
-.toDoContainer .leftTodo-items .checkbox {
-  margin-right: 10px;
+.toDoContainer .leftTodo-items .fa-check {
+  padding: 2px;
+  font-size: 28px;
+  line-height: 28px;
+  margin-right: 15px;
+  outline: none;
+  cursor: pointer;
 }
 
 .toDoContainer .leftTodo-items .fa-trash {
-  float: right;
   padding: 2px;
   font-size: 28px;
+  line-height: 28px;
+  margin-right: 15px;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+}
+
+.toDoContainer .leftTodo-items .counter {
+  padding: 2px;
+  font-size: 20px;
+  line-height: 28px;
+  margin-right: 50px;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: auto;
+  color: #fff;
+}
+
+.toDoContainer .leftTodo-items .icon-plus-sign {
+  padding: 2px;
+  font-size: 20px;
+  line-height: 28px;
+  margin-right: 25px;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+}
+
+.toDoContainer .leftTodo-items .icon-minus-sign {
+  padding: 2px;
+  font-size: 20px;
   line-height: 28px;
   margin-right: 15px;
   background: none;

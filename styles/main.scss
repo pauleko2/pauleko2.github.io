@@ -123,7 +123,7 @@ body {
     }
 }
 
-#timerBackground {}
+
 
 #pomodoroButton {
     top: 20%;
@@ -376,14 +376,55 @@ ul {
             border-radius: 20px;
         }
 
-        .checkbox {
-            margin-right: 10px;
-        }
-
-        .fa-trash {
-            float: right;
+        .fa-check {
             padding: 2px;
             font-size: 28px;
+            line-height: 28px;
+            margin-right: 15px;
+            outline: none;
+            cursor: pointer;
+        }
+
+
+        .fa-trash {
+            padding: 2px;
+            font-size: 28px;
+            line-height: 28px;
+            margin-right: 15px;
+            background: none;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .counter {
+            padding: 2px;
+            font-size: 20px;
+            line-height: 28px;
+            margin-right: 50px;
+            background: none;
+            border: none;
+            outline: none;
+            cursor: auto;
+            color: #fff;
+        }
+
+        .icon-plus-sign {
+            padding: 2px;
+            font-size: 20px;
+            line-height: 28px;
+            margin-right: 25px;
+            background: none;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .icon-minus-sign {
+            padding: 2px;
+            font-size: 20px;
             line-height: 28px;
             margin-right: 15px;
             background: none;
@@ -396,6 +437,7 @@ ul {
     }
 
     .leftTodo-items {
+        position: relative;
         min-width: 350px;
 
         .item {
@@ -408,14 +450,55 @@ ul {
             border-radius: 20px;
         }
 
-        .checkbox {
-            margin-right: 10px;
-        }
-
-        .fa-trash {
-            float: right;
+        .fa-check {
             padding: 2px;
             font-size: 28px;
+            line-height: 28px;
+            margin-right: 15px;
+            outline: none;
+            cursor: pointer;
+        }
+
+
+        .fa-trash {
+            padding: 2px;
+            font-size: 28px;
+            line-height: 28px;
+            margin-right: 15px;
+            background: none;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .counter {
+            padding: 2px;
+            font-size: 20px;
+            line-height: 28px;
+            margin-right: 50px;
+            background: none;
+            border: none;
+            outline: none;
+            cursor: auto;
+            color: #fff;
+        }
+
+        .icon-plus-sign {
+            padding: 2px;
+            font-size: 20px;
+            line-height: 28px;
+            margin-right: 25px;
+            background: none;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .icon-minus-sign {
+            padding: 2px;
+            font-size: 20px;
             line-height: 28px;
             margin-right: 15px;
             background: none;

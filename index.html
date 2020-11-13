@@ -11,7 +11,8 @@
     integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
     crossorigin="anonymous" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="styles/main.css" />
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
   <title>Pomodoro Timer</title>
 </head>
 
@@ -62,8 +63,8 @@
     </div>
     <div class="timerHolder">
       <div class="timerTopButtons">
-        <img src="pomodoroDark.svg" alt="" id="pomodoroButton" onmouseover="" />
-        <img src="breakLight.svg" alt="" id="breakButton" />
+        <img src="images/pomodoroDark.svg" alt="" id="pomodoroButton" onmouseover="" />
+        <img src="images/breakLight.svg" alt="" id="breakButton" />
       </div>
 
       <div id="timeString">
@@ -78,8 +79,8 @@
       </div>
 
       <div class="backgroundHold">
-        <img src="red.svg" alt="" id="timerBackground" />
-        <img src="start.svg" alt="" id="startButton" />
+        <img src="images/red.svg" alt="" id="timerBackground" />
+        <img src="images/start.svg" alt="" id="startButton" />
       </div>
     </div>
 
@@ -121,7 +122,14 @@
             <p class="p1">Notification tone</p>
           </div>
           <div class="box2">
-            <p class="p2"> <input type="checkbox" id="switch" name="theme" /><label for="switch"></label></p>
+            <select name="pets" id="pet-select">
+              <option value="bell">Bell</option>
+              <option value="cat">Cat</option>
+              <option value="hamster">Hamster</option>
+              <option value="parrot">Parrot</option>
+              <option value="spider">Spider</option>
+              <option value="goldfish">Goldfish</option>
+            </select>
           </div>
           <div class="box3">
             <hr class="rounded">
@@ -131,7 +139,7 @@
             <p class="p1">Notification volume</p>
           </div>
           <div class="box2">
-            <p class="p2"> <input type="checkbox" id="switch" name="theme" /><label for="switch"></label></p>
+            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
           </div>
           <div class="box3">
             <hr class="rounded">

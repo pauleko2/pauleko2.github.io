@@ -77,24 +77,24 @@ startB.addEventListener('click', () => {
 
 
 function changeToBreak() {
-    document.getElementById('timerBackground').src = 'greenBack.svg';
-    document.getElementById('breakButton').src = 'breakDark.svg';
-    document.getElementById('pomodoroButton').src = 'pomodoroLight.svg';
+    document.getElementById('timerBackground').src = 'images/greenBack.svg';
+    document.getElementById('breakButton').src = 'images/breakDark.svg';
+    document.getElementById('pomodoroButton').src = 'images/pomodoroLight.svg';
     document.getElementById('timeString').textContent = "05:00";
 }
 
 function changeToPomodoro() {
-    document.getElementById('timerBackground').src = 'red.svg';
-    document.getElementById('breakButton').src = 'breakLight.svg';
-    document.getElementById('pomodoroButton').src = 'pomodoroDark.svg';
+    document.getElementById('timerBackground').src = 'images/red.svg';
+    document.getElementById('breakButton').src = 'images/breakLight.svg';
+    document.getElementById('pomodoroButton').src = 'images/pomodoroDark.svg';
     document.getElementById('timeString').textContent = "25:00";
 }
 
 function onHover() {
     var img = document.getElementById('timerBackground').src;
     if (img.indexOf('red.svg') != -1) {
-        document.getElementById('timerBackground').src = 'greenBack.svg';
+        document.getElementById('timerBackground').src = 'images/greenBack.svg';
     } else {
-        document.getElementById('timerBackground').src = 'red.svg';
+        document.getElementById('timerBackground').src = 'images/red.svg';
     }
 }

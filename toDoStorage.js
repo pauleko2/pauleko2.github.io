@@ -20,6 +20,23 @@ function addTodo(item) {
         const todo = {
             id: Date.now(),
             name: item,
+            pomCycles: 0,
+            completed: false
+        };
+
+        todos.push(todo);
+        addToLocalStorage(todos); // then store it in localStorage
+        todoInput.value = '';
+    }
+}
+
+function addPomCycle(item) {
+    if (item !== '') {
+        // make a todo object, which has id, name, and completed properties
+        const todo = {
+            id: item.id,
+            name: item,
+            pomCycles: pomCycles++,
             completed: false
         };
 
@@ -51,11 +68,14 @@ function renderTodos(todos) {
               <button class="delete-button">X</button>
             </li> */
 
+
         li.innerHTML = `
-        <input type="checkbox" class="fa fa-check" ${checked}>
-        ${item.name}
-        <button class="fa fa-trash"></button>
-      `;
+      ${item.name} <button class="fa fa-trash"></button>
+      <button class="counter">1</button>
+      <button class="icon-plus-sign"></button>
+      <button class="icon-minus-sign"></button>
+    <input type="checkbox" class="fa fa-check" ${checked}>
+    `;
 
         if (item.completed) {
             completedItemList.append(li);
@@ -148,6 +168,14 @@ notCompletedItemList.addEventListener('click', function (event) {
         // toggle the state
         toggle(event.target.parentElement.getAttribute('data-key'));
     }
+
+    // check if that is a + sign
+    if (event.target.classList.contains('icon-plus-sign')) {
+        // get id from data-key attribute's value of parent <li> where the delete-button is present
+        addPomCycle(event.target.parentElement.getAttribute('data-key'));
+    }
+
+
 
     // check if that is a delete-button
     if (event.target.classList.contains('fa-trash')) {
