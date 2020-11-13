@@ -1,0 +1,558 @@
+html {
+  --bg-gradient: linear-gradient(140deg, rgba(255, 255, 255, 1) 0%, rgba(170, 170, 170, 1) 100%);
+  --backgroundColor: rgb(255, 255, 255);
+  --color-buttons: #303030;
+  --textColor: rgb(78, 78, 78);
+  --hoverColor: rgb(180, 180, 180);
+}
+
+html[data-theme='dark'] {
+  --bg-gradient: linear-gradient(140deg, rgb(66, 66, 66) 0%, rgb(48, 48, 48) 100%);
+  --backgroundColor: rgb(83, 83, 83);
+  --color-buttons: #ffffff;
+  --textColor: rgb(255, 255, 255);
+  --hoverColor: rgb(206, 206, 206);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  color: white;
+  font-family: "Poppins", sans-serif;
+  min-width: 100vh;
+  height: 100%;
+  margin: auto;
+}
+
+body .main {
+  background: var(--bg-gradient);
+  width: 100%;
+  background-size: 100% auto;
+  /* Fill width, retain proportions */
+  min-height: 2000px;
+  color: white;
+  -webkit-transition: background-color 0.5s ease-in-out 0s;
+  transition: background-color 0.5s ease-in-out 0s;
+  padding-bottom: 20px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.centerHolder {
+  padding: 0px 12px;
+  max-width: 620px;
+  margin: auto;
+}
+
+.topButtonsHolder {
+  background-color: inherit;
+  width: 100%;
+  height: 120px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.spanHold {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+  font-size: 25px;
+  padding: 8px 40px;
+  min-width: 60%;
+}
+
+.spanHold .settingsButton {
+  position: relative;
+  left: 80%;
+  max-width: 45%;
+}
+
+.spanHold .statsButton {
+  position: relative;
+  left: 80%;
+  max-width: 40%;
+}
+
+.timerHolder {
+  position: relative;
+  max-width: 380px;
+  margin: auto;
+}
+
+.timerHolder .timerTopButtons {
+  position: absolute;
+  background-color: inherit;
+  width: 100%;
+  height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.timerHolder .taskDisplay .CurrentTaskText {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: absolute;
+  margin-left: 9%;
+  margin-top: 36%;
+  width: 80%;
+  font-size: 12px;
+}
+
+.timerHolder .taskDisplay .taskText {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: absolute;
+  margin-top: 39%;
+  margin-left: 9%;
+  width: 80%;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#pomodoroButton {
+  top: 20%;
+  left: 15%;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  cursor: pointer;
+  width: 30%;
+  height: 35%;
+}
+
+#breakButton {
+  top: 20%;
+  left: 55%;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  cursor: pointer;
+  width: 30%;
+  height: 35%;
+}
+
+#startButton {
+  top: 70%;
+  left: 30%;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  width: 40%;
+  cursor: pointer;
+}
+
+#timeString {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: absolute;
+  margin-top: 14%;
+  margin-left: 9%;
+  width: 80%;
+  font-weight: bold;
+  font-size: 45pt;
+}
+
+.modal-bg {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: visibility 0s, opacity 0.2s;
+  transition: visibility 0s, opacity 0.2s;
+}
+
+.modal-bg .modal {
+  position: relative;
+  background-color: var(--backgroundColor);
+  width: 35%;
+  height: 60%;
+  background-color: var(--backgroundColor);
+  border-radius: 15px;
+}
+
+.modal-bg .modal .pText {
+  height: 80px;
+  padding-top: 10px;
+  color: var(--textColor);
+  font-size: 30px;
+  font-weight: bold;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  margin: auto;
+  width: 15%;
+}
+
+.modal-bg .modal .modal-close {
+  position: absolute;
+  top: 1px;
+  right: 10px;
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--textColor);
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.modal-bg .modal hr.rounded {
+  border-top: 8px solid #bbb;
+}
+
+.modal-bg .modal input[type=checkbox] {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.modal-bg .modal label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 52px;
+  height: 27px;
+  background: grey;
+  float: right;
+  border-radius: 100px;
+  position: relative;
+}
+
+.modal-bg .modal label:after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border-radius: 90px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.modal-bg .modal input:checked + label {
+  background: #FF8600;
+}
+
+.modal-bg .modal input:checked + label:after {
+  left: calc(100% - 5px);
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+}
+
+.modal-bg .modal label:active:after {
+  width: 45px;
+}
+
+.modal-bg .modal .settingsGrid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -ms-grid-rows: 70px 10px 70px 10px;
+      grid-template-rows: 70px 10px 70px 10px;
+  position: relative;
+}
+
+.modal-bg .modal .settingsGrid .box1 {
+  -ms-flex-item-align: left;
+      -ms-grid-row-align: left;
+      align-self: left;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modal-bg .modal .settingsGrid .box1 .p1 {
+  color: var(--textColor);
+  font-size: 25px;
+  padding: 20px;
+  text-align: left;
+  padding-left: 30px;
+}
+
+.modal-bg .modal .settingsGrid .box2 {
+  font-size: 25px;
+  padding: 20px;
+  text-align: right;
+  padding-right: 30px;
+}
+
+.modal-bg .modal .settingsGrid .box3 {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1/3;
+}
+
+.modal-bg .modal .settingsGrid .box3 .p1 {
+  color: var(--textColor);
+  font-size: 25px;
+  padding: 15px;
+  text-align: left;
+  padding-left: 30px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.toDoContainer {
+  position: relative;
+  max-width: 700px;
+  margin: auto;
+  /* todo-form */
+}
+
+.toDoContainer h1 {
+  color: var(--textColor);
+  padding-top: 0%;
+  font-size: 20px;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  text-align: center;
+}
+
+.toDoContainer h2 {
+  color: var(--textColor);
+  padding-top: 2%;
+  font-size: 20px;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  text-align: center;
+  padding-bottom: 2%;
+}
+
+.toDoContainer .todo-form {
+  margin: 20px 0px;
+  fill: none;
+}
+
+.toDoContainer .todo-input {
+  width: 90%;
+  color: var(--textColor);
+  border: none;
+  border-bottom: 3px solid #666;
+  background: none;
+  padding: 10px;
+  font-size: 22px;
+  outline: none;
+}
+
+.toDoContainer .add-button {
+  margin: 0 0px;
+  background: #222;
+  color: #fff;
+  font-size: 18px;
+  text-transform: uppercase;
+  padding: 10px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.toDoContainer .todo-items {
+  min-width: 350px;
+  /* each li with class="item" */
+}
+
+.toDoContainer .todo-items .item {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  background: #00d3ff;
+  background: linear-gradient(36deg, #00d3ff 0%, #2bc865 100%);
+  font-size: 20px;
+  border-radius: 20px;
+}
+
+.toDoContainer .todo-items .checkbox {
+  margin-right: 10px;
+}
+
+.toDoContainer .todo-items .fa-trash {
+  float: right;
+  padding: 2px;
+  font-size: 28px;
+  line-height: 28px;
+  margin-right: 15px;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+}
+
+.toDoContainer .leftTodo-items {
+  min-width: 350px;
+}
+
+.toDoContainer .leftTodo-items .item {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  background: #ff8600;
+  background: linear-gradient(36deg, #ff8600 0%, #c82b60 100%);
+  font-size: 20px;
+  border-radius: 20px;
+}
+
+.toDoContainer .leftTodo-items .checkbox {
+  margin-right: 10px;
+}
+
+.toDoContainer .leftTodo-items .fa-trash {
+  float: right;
+  padding: 2px;
+  font-size: 28px;
+  line-height: 28px;
+  margin-right: 15px;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+}
+
+.notCompleted,
+.Completed {
+  margin: 5px 0;
+  padding: 20px;
+  color: var(--textColor);
+  display: none;
+}
+
+.notCompleted h3,
+.Completed h3 {
+  font-size: 28px;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--textColor);
+}
+
+ol {
+  list-style: none;
+  counter-reset: my-counter;
+}
+
+ol li {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  background: #ff8600;
+  background: linear-gradient(36deg, #ff8600 0%, #c82b60 100%);
+  font-size: 30px;
+  counter-increment: my-counter;
+  border-radius: 20px;
+}
+
+ol.Completed li {
+  background: #00d3ff;
+  background: linear-gradient(36deg, #00d3ff 0%, #2bc865 100%);
+}
+
+ol li::before {
+  content: counter(my-counter);
+  background: var(--backgroundColor);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: inline-block;
+  line-height: 2rem;
+  text-align: center;
+  color: var(--textColor);
+  margin-right: 0.5rem;
+}
+
+li button {
+  float: right;
+  padding: 5px;
+  font-size: 28px;
+  line-height: 28px;
+  margin-right: 15px;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.bg-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+#Rectangle_11,
+#Rectangle_12,
+#Icon_ionic-md-stats,
+#Icon_feather-settings,
+#Path_1,
+#Path_2 {
+  stroke: var(--textColor);
+}
+
+#Icon_ionic-md-stats,
+#STATS,
+#SETTINGS,
+#Path_3,
+#Path_4,
+#Path_5,
+#Path_6 {
+  fill: var(--textColor);
+}
+
+html.transition,
+html.transition *,
+html.transition *:before,
+html.transition *:after {
+  -webkit-transition: all 750ms !important;
+  transition: all 750ms !important;
+  -webkit-transition-delay: 0 !important;
+          transition-delay: 0 !important;
+}
+/*# sourceMappingURL=main.css.map */

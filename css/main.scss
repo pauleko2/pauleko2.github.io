@@ -1,0 +1,532 @@
+html {
+    --bg-gradient: linear-gradient(140deg, rgba(255, 255, 255, 1) 0%, rgba(170, 170, 170, 1) 100%);
+    --backgroundColor: rgb(255, 255, 255);
+    --color-buttons: #303030;
+    --textColor: rgb(78, 78, 78);
+    --hoverColor: rgb(180, 180, 180);
+}
+
+html[data-theme='dark'] {
+    --bg-gradient: linear-gradient(140deg, rgb(66, 66, 66) 0%, rgb(48, 48, 48) 100%);
+    --backgroundColor: rgb(83, 83, 83);
+    --color-buttons: #ffffff;
+    --textColor: rgb(255, 255, 255);
+    --hoverColor: rgb(206, 206, 206);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    color: white;
+    font-family: "Poppins", sans-serif;
+    min-width: 100vh;
+    height: 100%;
+    margin: auto;
+
+    .main {
+        background: var(--bg-gradient);
+        width: 100%;
+        background-size: 100% auto;
+        /* Fill width, retain proportions */
+        min-height: 2000px;
+
+        color: white;
+        transition: background-color 0.5s ease-in-out 0s;
+        padding-bottom: 20px;
+        box-sizing: border-box;
+    }
+}
+
+.centerHolder {
+    padding: 0px 12px;
+    max-width: 620px;
+    margin: auto;
+}
+
+.topButtonsHolder {
+    background-color: inherit;
+    width: 100%;
+    height: 120px;
+    display: flex;
+    -moz-box-pack: justify;
+    justify-content: space-between;
+    -moz-box-align: center;
+    align-items: center;
+}
+
+.spanHold {
+    display: flex;
+    -moz-box-align: right;
+    align-items: center;
+    cursor: pointer;
+    font-size: 25px;
+    padding: 8px 40px;
+    min-width: 60%;
+
+    .settingsButton {
+        position: relative;
+        left: 80%;
+        max-width: 45%;
+    }
+
+    .statsButton {
+        position: relative;
+        left: 80%;
+        max-width: 40%;
+    }
+}
+
+.timerHolder {
+    position: relative;
+    max-width: 380px;
+    margin: auto;
+
+    .timerTopButtons {
+        position: absolute;
+        background-color: inherit;
+        width: 100%;
+        height: 100px;
+        display: flex;
+        -moz-box-pack: justify;
+        justify-content: space-between;
+        -moz-box-align: center;
+        align-items: center;
+    }
+
+    .taskDisplay {
+
+        .CurrentTaskText {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            margin-left: 9%;
+            margin-top: 36%;
+            width: 80%;
+            font-size: 12px;
+        }
+
+        .taskText {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            margin-top: 39%;
+            margin-left: 9%;
+            width: 80%;
+            font-weight: bold;
+            font-size: 20px;
+        }
+    }
+}
+
+#timerBackground {}
+
+#pomodoroButton {
+    top: 20%;
+    left: 15%;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    cursor: pointer;
+    width: 30%;
+    height: 35%;
+}
+
+#breakButton {
+    top: 20%;
+    left: 55%;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    cursor: pointer;
+    width: 30%;
+    height: 35%;
+}
+
+#startButton {
+    top: 70%;
+    left: 30%;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    width: 40%;
+    cursor: pointer;
+}
+
+#timeString {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    margin-top: 14%;
+    margin-left: 9%;
+    width: 80%;
+    font-weight: bold;
+    font-size: 45pt;
+}
+
+
+
+.modal-bg {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0s, opacity 0.2s;
+
+    .modal {
+        position: relative;
+        background-color: var(--backgroundColor);
+        width: 35%;
+        height: 60%;
+        background-color: var(--backgroundColor);
+        border-radius: 15px;
+
+
+        .pText {
+            height: 80px;
+            padding-top: 10px;
+            color: var(--textColor);
+            font-size: 30px;
+            font-weight: bold;
+            align-content: center;
+            margin: auto;
+            width: 15%;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1px;
+            right: 10px;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--textColor);
+            transform: rotate(45deg);
+        }
+
+        hr.rounded {
+            border-top: 8px solid #bbb;
+        }
+
+        input[type=checkbox] {
+            height: 0;
+            width: 0;
+            visibility: hidden;
+        }
+
+        label {
+            cursor: pointer;
+            text-indent: -9999px;
+            width: 52px;
+            height: 27px;
+            background: grey;
+            float: right;
+            border-radius: 100px;
+            position: relative;
+        }
+
+        label:after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border-radius: 90px;
+            transition: 0.3s;
+        }
+
+        input:checked+label {
+            background: #FF8600;
+        }
+
+        input:checked+label:after {
+            left: calc(100% - 5px);
+            transform: translateX(-100%);
+        }
+
+        label:active:after {
+            width: 45px;
+        }
+
+        .settingsGrid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 70px 10px 70px 10px;
+            position: relative;
+
+            .box1 {
+                align-self: left;
+                justify-content: center;
+
+                .p1 {
+                    color: var(--textColor);
+                    font-size: 25px;
+                    padding: 20px;
+                    text-align: left;
+                    padding-left: 30px;
+                }
+            }
+
+            .box2 {
+                font-size: 25px;
+                padding: 20px;
+                text-align: right;
+                padding-right: 30px;
+            }
+
+            .box3 {
+                grid-column: 1/3;
+
+                .p1 {
+                    color: var(--textColor);
+                    font-size: 25px;
+                    padding: 15px;
+                    text-align: left;
+                    padding-left: 30px;
+                }
+            }
+
+        }
+    }
+}
+
+ul {
+    list-style-type: none;
+}
+
+.toDoContainer {
+    position: relative;
+    max-width: 700px;
+    margin: auto;
+
+    h1 {
+        color: var(--textColor);
+        padding-top: 0%;
+        font-size: 20px;
+        align-content: center;
+        text-align: center;
+    }
+
+
+    h2 {
+        color: var(--textColor);
+        padding-top: 2%;
+        font-size: 20px;
+        align-content: center;
+        text-align: center;
+        padding-bottom: 2%;
+    }
+
+    /* todo-form */
+
+    .todo-form {
+        margin: 20px 0px;
+        fill: none;
+    }
+
+    .todo-input {
+        width: 90%;
+        color: var(--textColor);
+        border: none;
+        border-bottom: 3px solid #666;
+        background: none;
+        padding: 10px;
+        font-size: 22px;
+        outline: none;
+    }
+
+    .add-button {
+        margin: 0 0px;
+        background: #222;
+        color: #fff;
+        font-size: 18px;
+        text-transform: uppercase;
+        padding: 10px;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+
+    .todo-items {
+        min-width: 350px;
+
+        /* each li with class="item" */
+        .item {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            background: rgb(0, 211, 255);
+            background: linear-gradient(36deg, rgba(0, 211, 255, 1) 0%, rgba(43, 200, 101, 1) 100%);
+            font-size: 20px;
+            border-radius: 20px;
+        }
+
+        .checkbox {
+            margin-right: 10px;
+        }
+
+        .fa-trash {
+            float: right;
+            padding: 2px;
+            font-size: 28px;
+            line-height: 28px;
+            margin-right: 15px;
+            background: none;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            color: #fff;
+        }
+
+    }
+
+    .leftTodo-items {
+        min-width: 350px;
+
+        .item {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            background: rgb(255, 134, 0);
+            background: linear-gradient(36deg, rgba(255, 134, 0, 1) 0%, rgba(200, 43, 96, 1) 100%);
+            font-size: 20px;
+            border-radius: 20px;
+        }
+
+        .checkbox {
+            margin-right: 10px;
+        }
+
+        .fa-trash {
+            float: right;
+            padding: 2px;
+            font-size: 28px;
+            line-height: 28px;
+            margin-right: 15px;
+            background: none;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            color: #fff;
+        }
+    }
+
+}
+
+
+.notCompleted,
+.Completed {
+    margin: 5px 0;
+    padding: 20px;
+    color: var(--textColor);
+    display: none;
+
+    h3 {
+        font-size: 28px;
+        text-transform: uppercase;
+        text-align: center;
+        color: var(--textColor);
+    }
+}
+
+ol {
+    list-style: none;
+    counter-reset: my-counter;
+}
+
+ol li {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    background: rgb(255, 134, 0);
+    background: linear-gradient(36deg, rgba(255, 134, 0, 1) 0%, rgba(200, 43, 96, 1) 100%);
+    font-size: 30px;
+    counter-increment: my-counter;
+    border-radius: 20px;
+}
+
+ol.Completed li {
+    background: rgb(0, 211, 255);
+    background: linear-gradient(36deg, rgba(0, 211, 255, 1) 0%, rgba(43, 200, 101, 1) 100%);
+}
+
+ol li::before {
+    content: counter(my-counter);
+    background: var(--backgroundColor);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: inline-block;
+    line-height: 2rem;
+    text-align: center;
+    color: var(--textColor);
+    margin-right: 0.5rem;
+}
+
+li button {
+    float: right;
+    padding: 5px;
+    font-size: 28px;
+    line-height: 28px;
+    margin-right: 15px;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+
+
+
+
+.bg-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+//Stats and settings button coloring
+#Rectangle_11,
+#Rectangle_12,
+#Icon_ionic-md-stats,
+#Icon_feather-settings,
+#Path_1,
+#Path_2 {
+    stroke: var(--textColor);
+}
+
+#Icon_ionic-md-stats,
+#STATS,
+#SETTINGS,
+#Path_3,
+#Path_4,
+#Path_5,
+#Path_6 {
+    fill: var(--textColor);
+}
+
+
+
+
+html.transition,
+html.transition *,
+html.transition *:before,
+html.transition *:after {
+    transition: all 750ms !important;
+    transition-delay: 0 !important;
+}

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="icon" href="/favico.ico?" type="image/x-icon">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+  <title>Pomodoro Timer</title>
+</head>
+
+<body>
+
+  <div class="main" id="mainId">
+    <div class="centerHolder">
+      <div class="topButtonsHolder">
+        <span class="spanHold">
+          <svg xmlns="http://www.w3.org/2000/svg" width="150" height="52" viewBox="0 0 150 52" class="statsButton">
+            <g id="settings_button" transform="translate(-1149 -111)">
+              <g id="Rectangle_11" data-name="Rectangle 11" transform="translate(1149 111)" fill="none" stroke="#707070"
+                stroke-width="5">
+                <rect width="150" height="52" rx="20" stroke="none" />
+                <rect x="2.5" y="2.5" width="145" height="47" rx="17.5" fill="none" />
+              </g>
+              <g id="Icon_ionic-md-stats" data-name="Icon ionic-md-stats" transform="translate(1161.85 118)">
+                <path id="Path_3" data-name="Path 3" d="M12.375,4.5h4.5v27h-4.5Z" fill="#707070" />
+                <path id="Path_4" data-name="Path 4" d="M5.625,23.625h4.5V31.5h-4.5Z" fill="#707070" />
+                <path id="Path_5" data-name="Path 5" d="M19.125,19.125h4.5V31.5h-4.5Z" fill="#707070" />
+                <path id="Path_6" data-name="Path 6" d="M25.875,12.375h4.5V31.5h-4.5Z" fill="#707070" />
+              </g>
+              <text id="STATS" transform="translate(1213 146)" fill="#707070" font-size="22"
+                font-family="SegoeUI-Bold, Segoe UI" font-weight="700">
+                <tspan x="0" y="0">STATS</tspan>
+              </text>
+            </g>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="172" height="52" viewBox="0 0 172 52" class="settingsButton">
+            <g id="Rectangle_12" data-name="Rectangle 11" fill="none" stroke="#707070" stroke-width="5">
+              <rect width="172" height="52" rx="20" stroke="none" />
+              <rect x="2.5" y="2.5" width="167" height="47" rx="17.5" fill="none" />
+            </g>
+            <text id="SETTINGS" transform="translate(56 33)" fill="#707070" font-size="22"
+              font-family="SegoeUI-Bold, Segoe UI" font-weight="700">
+              <tspan x="0" y="0">SETTINGS</tspan>
+            </text>
+            <g id="Icon_feather-settings" data-name="Icon feather-settings" transform="translate(12 8)">
+              <path id="Path_1" data-name="Path 1" d="M22.5,18A4.5,4.5,0,1,1,18,13.5,4.5,4.5,0,0,1,22.5,18Z" fill="none"
+                stroke="#707070" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" />
+              <path id="Path_2" data-name="Path 2"
+                d="M29.1,22.5a2.475,2.475,0,0,0,.495,2.73l.09.09a3,3,0,1,1-4.245,4.245l-.09-.09a2.5,2.5,0,0,0-4.23,1.77V31.5a3,3,0,1,1-6,0v-.135A2.475,2.475,0,0,0,13.5,29.1a2.475,2.475,0,0,0-2.73.495l-.09.09A3,3,0,1,1,6.435,25.44l.09-.09a2.5,2.5,0,0,0-1.77-4.23H4.5a3,3,0,1,1,0-6h.135A2.475,2.475,0,0,0,6.9,13.5a2.475,2.475,0,0,0-.5-2.73l-.09-.09A3,3,0,1,1,10.56,6.435l.09.09a2.475,2.475,0,0,0,2.73.495h.12A2.475,2.475,0,0,0,15,4.755V4.5a3,3,0,0,1,6,0v.135a2.5,2.5,0,0,0,4.23,1.77l.09-.09a3,3,0,1,1,4.245,4.245l-.09.09a2.475,2.475,0,0,0-.5,2.73v.12A2.475,2.475,0,0,0,31.245,15H31.5a3,3,0,0,1,0,6h-.135A2.475,2.475,0,0,0,29.1,22.5Z"
+                fill="none" stroke="#707070" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" />
+            </g>
+          </svg>
+        </span>
+      </div>
+    </div>
+    <div class="timerHolder">
+      <div class="timerTopButtons">
+        <img src="pomodoroDark.svg" alt="" id="pomodoroButton" onmouseover="" />
+        <img src="breakLight.svg" alt="" id="breakButton" />
+      </div>
+
+      <div id="timeString">
+        <p id="min-label" class="label">25</p>
+        <p class="label">:</p>
+        <p id="sec-label" class="label">00</p>
+      </div>
+
+      <div class="taskDisplay">
+        <h3 class="CurrentTaskText">Current task</h3>
+        <h4 class="taskText">ccc</h4>
+      </div>
+
+      <div class="backgroundHold">
+        <img src="red.svg" alt="" id="timerBackground" />
+        <img src="start.svg" alt="" id="startButton" />
+      </div>
+    </div>
+
+    <div class="toDoContainer">
+      <h1>To Do List</h1>
+      <form class="todo-form">
+        <input type="text" class="todo-input" placeholder="Add a Task">
+        <button type="submit" class="add-button">Add</button>
+      </form>
+
+      <h2 class="leftToDoText">Left to Do</h2>
+      <ul class="leftTodo-items">
+      </ul>
+
+      <h2 class="completedText">Completed</h2>
+      <ul class="todo-items">
+      </ul>
+    </div>
+
+    <div class="modal-bg">
+      <div class="modal">
+        <p class="pText">Settings</p>
+        <span class="modal-close">+</span>
+        <hr class="rounded">
+        <div class="settingsGrid">
+
+
+          <div class="box1">
+            <p class="p1">Dark Mode</p>
+          </div>
+          <div class="box2">
+            <p class="p2"> <input type="checkbox" id="switch" name="theme" /><label for="switch"></label></p>
+          </div>
+          <div class="box3">
+            <hr class="rounded">
+          </div>
+
+          <div class="box1">
+            <p class="p1">Notification tone</p>
+          </div>
+          <div class="box2">
+            <p class="p2"> <input type="checkbox" id="switch" name="theme" /><label for="switch"></label></p>
+          </div>
+          <div class="box3">
+            <hr class="rounded">
+          </div>
+
+          <div class="box1">
+            <p class="p1">Notification volume</p>
+          </div>
+          <div class="box2">
+            <p class="p2"> <input type="checkbox" id="switch" name="theme" /><label for="switch"></label></p>
+          </div>
+          <div class="box3">
+            <hr class="rounded">
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <script src="test.js"></script>
+    <script src="toDoStorage.js"></script>
+
+</body>
+
+
+</html>
