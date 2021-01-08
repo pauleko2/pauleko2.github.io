@@ -3,6 +3,8 @@ const todoInput = document.querySelector('.todo-input');
 const completedItemList = document.querySelector('.todo-items');
 const notCompletedItemList = document.querySelector('.leftTodo-items');
 
+const currentTaskText = document.getElementById("taskText");
+
 const leftToDoText = document.querySelector(".leftToDoText");
 const completedText = document.querySelector(".completedText");
 
@@ -20,29 +22,14 @@ function addTodo(item) {
         const todo = {
             id: Date.now(),
             name: item,
-            pomCycles: 0,
+            pomCycles: 1,
             completed: false
         };
 
         todos.push(todo);
         addToLocalStorage(todos); // then store it in localStorage
         todoInput.value = '';
-    }
-}
-
-function addPomCycle(item) {
-    if (item !== '') {
-        // make a todo object, which has id, name, and completed properties
-        const todo = {
-            id: item.id,
-            name: item,
-            pomCycles: pomCycles++,
-            completed: false
-        };
-
-        todos.push(todo);
-        addToLocalStorage(todos); // then store it in localStorage
-        todoInput.value = '';
+        updateLeftandCompl();
     }
 }
 
@@ -68,27 +55,33 @@ function renderTodos(todos) {
               <button class="delete-button">X</button>
             </li> */
 
-
-        li.innerHTML = `
-      ${item.name} <button class="fa fa-trash"></button>
-      <button class="counter">1</button>
-      <button class="icon-plus-sign"></button>
-      <button class="icon-minus-sign"></button>
-    <input type="checkbox" class="fa fa-check" ${checked}>
-    `;
-
         if (item.completed) {
+            li.innerHTML = `
+            ${item.name} <button class="fa fa-trash"></button>`;
+
             completedItemList.append(li);
         } else {
+
+            li.innerHTML = `
+            ${item.name} <button class="fa fa-trash"></button>
+            <button class="fas fa-check" id="checkBoo"></button>
+            <button class="counter">${item.pomCycles}</button>
+            <button class="icon-plus-sign" id="pliusas"></button>
+            <button class="icon-minus-sign" id="minusas"></button>
+          `;
+
             notCompletedItemList.append(li);
         }
     });
+
+    updateLeftandCompl();
 
 }
 
 function addToLocalStorage(todos) {
     localStorage.setItem('todos', JSON.stringify(todos));
     renderTodos(todos);
+    updateCurrentTask();
 }
 
 function getFromLocalStorage() {
@@ -101,20 +94,34 @@ function getFromLocalStorage() {
 
 function toggle(id) {
     todos.forEach(function (item) {
-        // use == not ===, because here types are different. One is number and other is string
         if (item.id == id) {
-            // toggle the value
             item.completed = !item.completed;
         }
     });
+    updateLeftandCompl();
+    addToLocalStorage(todos);
+}
 
+function increaseCycleCount(id) {
+    todos.forEach(function (item) {
+        if (item.id == id) {
+            item.pomCycles++;
+        }
+    });
+    addToLocalStorage(todos);
+}
+
+function decreaseCycleCount(id) {
+    todos.forEach(function (item) {
+        if (item.id == id) {
+            item.pomCycles--;
+        }
+    });
     addToLocalStorage(todos);
 }
 
 function deleteTodo(id) {
-    // filters out the <li> with the id and updates the todos array
     todos = todos.filter(function (item) {
-        // use != not !==, because here types are different. One is number and other is string
         return item.id != id;
     });
 
@@ -123,69 +130,90 @@ function deleteTodo(id) {
 
 
 getFromLocalStorage();
-if (notCompletedItemList.childElementCount == 0) {
-    leftToDoText.style.display = 'none';
-} else {
-    leftToDoText.style.display = 'block';
-}
 
 
-if (completedItemList.childElementCount == 0) {
-    leftToDoText.style.display = 'none';
-} else {
-    leftToDoText.style.display = 'block';
-}
-
-
-
-// after that addEventListener <ul> with class=todoItems. Because we need to listen for click event in all delete-button and checkbox
 completedItemList.addEventListener('click', function (event) {
-    // check if the event is on checkbox
+    //Spausta varnele
     if (event.target.type === 'checkbox') {
-        // toggle the state
         toggle(event.target.parentElement.getAttribute('data-key'));
     }
 
-    // check if that is a delete-button
+    //Spausta siuksline
     if (event.target.classList.contains('fa-trash')) {
-        // get id from data-key attribute's value of parent <li> where the delete-button is present
         deleteTodo(event.target.parentElement.getAttribute('data-key'));
     }
-
-    if (completedItemList.childElementCount == 0) {
-        leftToDoText.style.display = 'none';
-    } else {
-        leftToDoText.style.display = 'block';
-    }
-
-
-
+    updateCurrentTask();
+    updateLeftandCompl();
 });
 
 notCompletedItemList.addEventListener('click', function (event) {
-    // check if the event is on checkbox
-    if (event.target.type === 'checkbox') {
-        // toggle the state
+
+    //Spausta varnele
+    if (event.target.id === 'checkBoo') {
         toggle(event.target.parentElement.getAttribute('data-key'));
     }
 
-    // check if that is a + sign
-    if (event.target.classList.contains('icon-plus-sign')) {
-        // get id from data-key attribute's value of parent <li> where the delete-button is present
-        addPomCycle(event.target.parentElement.getAttribute('data-key'));
+    //Spaustas pliusas
+    if (event.target.id == "pliusas") {
+        console.log(event.target.parentElement.getAttribute('data-key'));
+        increaseCycleCount(event.target.parentElement.getAttribute('data-key'));
     }
 
+    //Spaustas minusas
+    if (event.target.id == "minusas") {
+        console.log(event.target.parentElement.getAttribute('data-key'));
+        decreaseCycleCount(event.target.parentElement.getAttribute('data-key'));
+    }
 
-
-    // check if that is a delete-button
+    //Spausta siuksline
     if (event.target.classList.contains('fa-trash')) {
-        // get id from data-key attribute's value of parent <li> where the delete-button is present
         deleteTodo(event.target.parentElement.getAttribute('data-key'));
     }
+    updateLeftandCompl();
+    updateCurrentTask();
+});
 
+
+function decrimentPomCycles() {
+    for (i = 0; i < todos.length; i++) {
+        if (!todos[i].completed) {
+            if (todos[i].pomCycles > 1) {
+                todos[i].pomCycles--;
+                addToLocalStorage(todos);
+                updateLeftandCompl();
+            } else if (todos[i].pomCycles == 1) {
+                todos[i].pomCycles--;
+                toggle(todos[i].id);
+                updateLeftandCompl();
+            }
+            break;
+        }
+    }
+}
+
+function updateCurrentTask() {
+    for (i = 0; i < todos.length; i++) {
+        if (!todos[i].completed) {
+            taskText.innerText = todos[i].name;
+            break;
+        } else {
+            taskText.innerText = "";
+        }
+    }
+}
+
+function updateLeftandCompl() {
     if (notCompletedItemList.childElementCount == 0) {
         leftToDoText.style.display = 'none';
     } else {
         leftToDoText.style.display = 'block';
     }
-});
+
+
+    if (completedItemList.childElementCount == 0) {
+        completedText.style.display = 'none';
+    } else {
+        completedText.style.display = 'block';
+    }
+
+}

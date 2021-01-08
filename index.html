@@ -22,8 +22,9 @@
     <div class="centerHolder">
       <div class="topButtonsHolder">
         <span class="spanHold">
-          <svg xmlns="http://www.w3.org/2000/svg" width="150" height="52" viewBox="0 0 150 52" class="statsButton">
-            <g id="settings_button" transform="translate(-1149 -111)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="150" height="52" viewBox="0 0 150 52" class="statsButton"
+            id="statisticsButton">
+            <g id=" settings_button" transform="translate(-1149 -111)">
               <g id="Rectangle_11" data-name="Rectangle 11" transform="translate(1149 111)" fill="none" stroke="#707070"
                 stroke-width="5">
                 <rect width="150" height="52" rx="20" stroke="none" />
@@ -68,24 +69,23 @@
       </div>
 
       <div id="timeString">
-        <p id="min-label" class="label">25</p>
-        <p class="label">:</p>
-        <p id="sec-label" class="label">00</p>
+        <p id="timerLabel" class="label"></p>
       </div>
 
       <div class="taskDisplay">
         <h3 class="CurrentTaskText">Current task</h3>
-        <h4 class="taskText">ccc</h4>
+        <h4 class="taskText" id="taskText"></h4>
       </div>
 
       <div class="backgroundHold">
         <img src="images/red.svg" alt="" id="timerBackground" />
         <img src="images/start.svg" alt="" id="startButton" />
+        <img src="images/reset.svg" alt="" id="resetButton" />
+        <img src="images/stop.svg" alt="" id="stopButton" />
       </div>
     </div>
 
     <div class="toDoContainer">
-      <h1>To Do List</h1>
       <form class="todo-form">
         <input type="text" class="todo-input" placeholder="Add a Task">
         <button type="submit" class="add-button">Add</button>
@@ -112,24 +112,31 @@
             <p class="p1">Dark Mode</p>
           </div>
           <div class="box2">
-            <p class="p2"> <input type="checkbox" id="switch" name="theme" /><label for="switch"></label></p>
+          </div>
+          <div class="box4">
+            <p class="p1"> <input type="checkbox" id="switch" name="theme" /><label for="switch"></label></p>
           </div>
           <div class="box3">
             <hr class="rounded">
           </div>
 
+
           <div class="box1">
             <p class="p1">Notification tone</p>
           </div>
           <div class="box2">
-            <select name="pets" id="pet-select">
-              <option value="bell">Bell</option>
-              <option value="cat">Cat</option>
-              <option value="hamster">Hamster</option>
-              <option value="parrot">Parrot</option>
-              <option value="spider">Spider</option>
-              <option value="goldfish">Goldfish</option>
-            </select>
+          </div>
+          <div class="box4">
+            <div class="centerBox">
+              <button type="button" id="testSoundButton" class="testButton">TEST</button>
+              <select onchange="" name="notifications" id="notif-select" class="p1">
+                <option value="bell">Bell</option>
+                <option value="panda">Panda</option>
+                <option value="hamster">Clack</option>
+                <option value="parrot">Click</option>
+              </select>
+            </div>
+
           </div>
           <div class="box3">
             <hr class="rounded">
@@ -139,7 +146,34 @@
             <p class="p1">Notification volume</p>
           </div>
           <div class="box2">
-            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+          </div>
+          <div class="box4">
+            <input type="range" min="0" max="100" value="100" class="slider" id="notifVolume">
+          </div>
+          <div class="box3">
+            <hr class="rounded">
+          </div>
+          <div class="box1">
+            <p class="p1">Pomodoro length</p>
+          </div>
+          <div class="box2">
+          </div>
+          <div class="box4">
+            <input type="text" id="plength" name="plength" class="BREAKK"><br>
+            <button type="button" id="pLengthButton" class="OKBUTTONS">OK</button>
+          </div>
+          <div class="box3">
+            <hr class="rounded">
+          </div>
+
+          <div class="box1">
+            <p class="p1">Break length</p>
+          </div>
+          <div class="box2">
+          </div>
+          <div class="box4">
+            <input type="text" id="blength" value="blength" class="BREAKK"><br>
+            <button type="button" id="bLengthButton" class="OKBUTTONS">OK</button>
           </div>
           <div class="box3">
             <hr class="rounded">
@@ -147,10 +181,44 @@
 
         </div>
       </div>
-
     </div>
-    <script src="test.js"></script>
-    <script src="toDoStorage.js"></script>
+
+
+    <div class="modal2-bg">
+      <div class="modal2">
+        <p class="pText">Statistics</p>
+        <span class="modal2-close">+</span>
+        <div class="totalHolders">
+          <div class="te3">
+            <hr class="rounded">
+          </div>
+          <div class="te1">
+            <p class="p1">Completed Pomodoro cycles:</p>
+          </div>
+          <div class="te2">
+            <p class="p1" id="totalCyclesText">10</p>
+          </div>
+          <div class="te3">
+          </div>
+          <div class="te1">
+            <p class="p1">Total time spent:</p>
+          </div>
+          <div class="te2">
+            <p class="p1" id="timeSpentText">10 min</p>
+          </div>
+          <div class="te3">
+            <hr class="rounded">
+          </div>
+        </div>
+        <ul class="stat-items">
+        </ul>
+
+      </div>
+    </div>
+
+  </div>
+  <script src="test.js"></script>
+  <script src="toDoStorage.js"></script>
 
 </body>
 
