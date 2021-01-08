@@ -17,14 +17,13 @@
 </head>
 
 <body>
-
   <div class="main" id="mainId">
     <div class="centerHolder">
       <div class="topButtonsHolder">
         <span class="spanHold">
           <svg xmlns="http://www.w3.org/2000/svg" width="150" height="52" viewBox="0 0 150 52" class="statsButton"
             id="statisticsButton">
-            <g id=" settings_button" transform="translate(-1149 -111)">
+            <g id="settings_button" transform="translate(-1149 -111)">
               <g id="Rectangle_11" data-name="Rectangle 11" transform="translate(1149 111)" fill="none" stroke="#707070"
                 stroke-width="5">
                 <rect width="150" height="52" rx="20" stroke="none" />
@@ -74,7 +73,7 @@
 
       <div class="taskDisplay">
         <h3 class="CurrentTaskText">Current task</h3>
-        <h4 class="taskText" id="taskText"></h4>
+        <p class="taskText" id="taskText"></p>
       </div>
 
       <div class="backgroundHold">
@@ -106,8 +105,6 @@
         <span class="modal-close">+</span>
         <hr class="rounded">
         <div class="settingsGrid">
-
-
           <div class="box1">
             <p class="p1">Dark Mode</p>
           </div>
@@ -119,8 +116,6 @@
           <div class="box3">
             <hr class="rounded">
           </div>
-
-
           <div class="box1">
             <p class="p1">Notification tone</p>
           </div>
@@ -130,10 +125,10 @@
             <div class="centerBox">
               <button type="button" id="testSoundButton" class="testButton">TEST</button>
               <select onchange="" name="notifications" id="notif-select" class="p1">
-                <option value="bell">Bell</option>
-                <option value="panda">Panda</option>
-                <option value="hamster">Clack</option>
-                <option value="parrot">Click</option>
+                <option selected="selected" value="bell">Bell</option>
+                <option value="calm">Calm</option>
+                <option value="twinkle">Twinkle</option>
+                <option value="quick">Quick</option>
               </select>
             </div>
 
@@ -221,6 +216,5 @@
   <script src="toDoStorage.js"></script>
 
 </body>
-
 
 </html>

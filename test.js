@@ -4,7 +4,6 @@ const resetB = document.getElementById('resetButton');
 const pomodoroB = document.getElementById('pomodoroButton');
 const breakB = document.getElementById('breakButton');
 
-
 const totalMinutesText = document.getElementById('timeSpentText');
 const totalCyclesText = document.getElementById('totalCyclesText');
 
@@ -13,9 +12,7 @@ var modalBg = document.querySelector('.modal-bg');
 var modalBg2 = document.querySelector('.modal2-bg');
 var modalClose = document.querySelector('.modal-close');
 var modal2Close = document.querySelector('.modal2-close');
-
 const statsList = document.querySelector('.stat-items');
-
 var themeToggle = document.querySelector('input[name=theme]');
 const countdownText = document.getElementById("timerLabel");
 const pomOkButton = document.getElementById('pLengthButton');
@@ -43,7 +40,9 @@ testSoundButton.addEventListener('click', testSound);
 notificationSlider.addEventListener('change', setNotificationVolume);
 
 var bell = new Audio('./bell.mp3');
-var panda = new Audio('./panda.mp3');
+var calm = new Audio('./calm.mp3');
+var twinkle = new Audio('./twinkle.mp3');
+var quick = new Audio('./quick.mp3');
 var audioToPlay = new Audio();
 
 let stats = [];
@@ -51,7 +50,6 @@ let stats = [];
 function testSound() {
     audioToPlay.play();
 }
-
 
 function getPomLen() {
     strPom = localStorage.getItem("pomCycle");
@@ -92,9 +90,17 @@ function equipNotification() {
             audioToPlay = bell;
             selectedNotif.value = 'bell';
             break;
-        case 'panda':
-            audioToPlay = panda;
-            selectedNotif.value = 'panda';
+        case 'calm':
+            audioToPlay = calm;
+            selectedNotif.value = 'calm';
+            break;
+        case 'twinkle':
+            audioToPlay = twinkle;
+            selectedNotif.value = 'twinkle';
+            break;
+        case 'quick':
+            audioToPlay = quick;
+            selectedNotif.value = 'quick';
             break;
         default:
             audioToPlay = bell;
@@ -138,7 +144,7 @@ function stopTimer() {
 function startTimer() {
     console.log("starting");
     if (timerStarted === undefined) {
-        timerStarted = setInterval(timerCountdown, 25);
+        timerStarted = setInterval(timerCountdown, 1000);
     } else {}
 }
 
@@ -174,8 +180,13 @@ function timerCountdown() {
 function resetTimer() {
     clearInterval(timerStarted);
     timerStarted = undefined;
-    countdownText.innerHTML = `${pomodoroLen}:00`;
-    time = pomodoroLen * 60;
+    if (!onBreak) {
+        countdownText.innerHTML = `${pomodoroLen}:00`;
+        time = pomodoroLen * 60;
+    } else {
+        countdownText.innerHTML = `${breakLen}:00`;
+        time = breakLen * 60;
+    }
 }
 
 themeToggle.addEventListener('change', function () {
@@ -238,13 +249,13 @@ window.addEventListener('click', (event) => {
 });
 
 
-// breakB.addEventListener('click', () => {
-//     changeToBreak();
-// });
+breakB.addEventListener('click', () => {
+    changeToBreak();
+});
 
-// pomodoroB.addEventListener('click', () => {
-//     changeToPomodoro();
-// });
+pomodoroB.addEventListener('click', () => {
+    changeToPomodoro();
+});
 
 
 
@@ -252,14 +263,20 @@ function changeToBreak() {
     document.getElementById('timerBackground').src = 'images/greenBack.svg';
     document.getElementById('breakButton').src = 'images/breakDark.svg';
     document.getElementById('pomodoroButton').src = 'images/pomodoroLight.svg';
+    resetTimer();
     countdownText.innerHTML = `${breakLen}:00`;
+    onBreak = true;
+    time = breakLen * 60;
 }
 
 function changeToPomodoro() {
     document.getElementById('timerBackground').src = 'images/red.svg';
     document.getElementById('breakButton').src = 'images/breakLight.svg';
     document.getElementById('pomodoroButton').src = 'images/pomodoroDark.svg';
+    resetTimer();
     countdownText.innerHTML = `${pomodoroLen}:00`;
+    onBreak = false;
+    time = pomodoroLen * 60;
 }
 
 function onHover() {
@@ -274,8 +291,12 @@ function onHover() {
 function addStat() {
     var d = new Date();
 
+    var date = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+    var time = d.getHours() + "h:" + d.getMinutes() + "min";
+    var dateTime = date + ' ' + time;
+
     const stat = {
-        date: d,
+        date: dateTime,
         cycleLength: pomodoroLen,
     };
     stats.push(stat);
@@ -300,7 +321,7 @@ function showStats(stats) {
             var datString = stat.date;
             var newString = datString.substring(0, 18);
 
-            li.innerHTML = `${newString} Cycle length: ${stat.cycleLength}min.`;
+            li.innerHTML = `${newString}`;
             statsList.append(li);
         });
         totalMinutesText.innerHTML = `${totalMin} min.`;
